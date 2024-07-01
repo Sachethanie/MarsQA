@@ -33,7 +33,6 @@ namespace MarsQA.Helpers
         public static void TurnOnWait()
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
         }
 
         public static void NavigateUrl()

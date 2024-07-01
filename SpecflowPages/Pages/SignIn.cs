@@ -16,6 +16,7 @@ namespace MarsQA.Pages
             Email.SendKeys(ExcelLibHelper.ReadData(2,"username"));
             Password.SendKeys(ExcelLibHelper.ReadData(2, "password"));
             LoginBtn.Click();
+            Thread.Sleep(1000);
         }
         public static void Login()
         {

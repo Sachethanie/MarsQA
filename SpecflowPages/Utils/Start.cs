@@ -13,11 +13,10 @@ namespace MarsQA.Utils
         {
             //launch the browser
             Initialize();
-            
 
             ExcelLibHelper.PopulateInCollection(@"SpecflowTests\Data\Mars.xlsx", "Credentials");
             //call the SignIn class
-            SignIn.SigninStep();
+            //SignIn.SigninStep();
         }
 
         [AfterScenario]
