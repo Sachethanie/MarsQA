@@ -1,5 +1,8 @@
-﻿using MarsQA.Helpers;
+﻿using AventStack.ExtentReports;
+using MarsQA.Helpers;
 using MarsQA.Pages;
+using MarsQA.SpecflowPages.Helpers;
+using TechTalk.SpecFlow;
 using static MarsQA.Helpers.CommonMethods;
 
 namespace MarsQA.Utils
@@ -7,16 +10,22 @@ namespace MarsQA.Utils
     [Binding]
     public class Start : Driver
     {
+        [BeforeTestRun]
+        public static void BeforeTestRun()
+        {
+            ExtentReportManager.InitReport();
+        }
+
 
         [BeforeScenario]
-        public void Setup()
+        public void Setup(ScenarioContext scenarioContext)
         {
-            //launch the browser
-            Initialize();
-
+            ExtentReportManager.CreateTest(scenarioContext.ScenarioInfo.Title);
             ExcelLibHelper.PopulateInCollection(@"SpecflowTests\Data\Mars.xlsx", "Credentials");
+            //launch the browser
+            Initialize();            
             //call the SignIn class
-            //SignIn.SigninStep();
+            SignIn.SigninStep();
         }
 
         [AfterScenario]
@@ -36,6 +45,28 @@ namespace MarsQA.Utils
             //CommonMethods.Extent.Flush();
            
 
+        }
+
+        [AfterStep]
+        public void AfterStep(ScenarioContext scenarioContext)
+        {
+            var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
+            var stepInfo = scenarioContext.StepContext.StepInfo.Text;
+
+            if (scenarioContext.TestError == null)
+            {
+                ExtentReportManager.LogTestStep(Status.Pass, $"{stepType} {stepInfo}");
+            }
+            else
+            {
+                ExtentReportManager.LogTestStep(Status.Fail, $"{stepType} {stepInfo}\n{scenarioContext.TestError.Message}");
+            }
+        }
+
+        [AfterTestRun]
+        public static void AfterTestRun()
+        {
+            ExtentReportManager.FlushReport();
         }
     }
 }

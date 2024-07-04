@@ -84,7 +84,7 @@ namespace MarsQA.Features
             argumentsOfScenario.Add("skill", skill);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A. Create a new skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,23 +94,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 4
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 5
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then(string.Format("I create a new skill records with values  \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 6
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 7
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 8
- testRunner.And(string.Format("I create a new skill record with values \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
  testRunner.Then(string.Format("I should see popup message as \'{0} has been added to your skills\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
- testRunner.And(string.Format("I should be able to see added skill in table  \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.And(string.Format("I should be able to see added skill in table \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -118,15 +112,17 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("B. Edit an existing skill to a new skill record")]
-        [NUnit.Framework.TestCaseAttribute("Java", "Expert", null)]
-        public void B_EditAnExistingSkillToANewSkillRecord(string skill, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("QA", "Java", "Intermediate", "Expert", null)]
+        public void B_EditAnExistingSkillToANewSkillRecord(string skill, string newSkill, string level, string newLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("skill", skill);
+            argumentsOfScenario.Add("newSkill", newSkill);
             argumentsOfScenario.Add("level", level);
+            argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B. Edit an existing skill to a new skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 13
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -136,23 +132,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 14
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 15
+ testRunner.Then(string.Format("I Edit an existing skill \'{0}\' \'{1}\'  to a new record with values \'{2}\' \'{3}\'", skill, level, newSkill, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 16
+ testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your skills\'", newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 17
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 18
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 19
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 20
- testRunner.And(string.Format("I Edit an existing skill to a new skill record with values \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
- testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your skills\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 22
- testRunner.And(string.Format("I should be able to see updated skill in table  \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I should be able to see updated skill in table  \'{0}\' \'{1}\'", newSkill, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -160,14 +150,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("C. Cannot be able to add new skill without adding skill level")]
-        [NUnit.Framework.TestCaseAttribute("Python", null)]
-        public void C_CannotBeAbleToAddNewSkillWithoutAddingSkillLevel(string skill, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("QA", null)]
+        public void C_CannotBeAbleToAddNewSkillWithoutAddingSkillLevel(string newSkill, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("skill", skill);
+            argumentsOfScenario.Add("newSkill", newSkill);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("C. Cannot be able to add new skill without adding skill level", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 22
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -177,20 +167,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 23
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 29
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.Then(string.Format("I create a new skill records with value  \'{0}\' without adding skill level", newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 30
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 31
- testRunner.And(string.Format("I create a new skill record with value \'{0}\' without adding skill level", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 32
- testRunner.Then("I should see popup message as \'Please enter skill and level\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+ testRunner.Then("I should see popup message as \'Please enter skill and experience level\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -198,15 +182,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("D. Cannot be able to add existing skill and level as new skill")]
-        [NUnit.Framework.TestCaseAttribute("Java", "Expert", null)]
-        public void D_CannotBeAbleToAddExistingSkillAndLevelAsNewSkill(string skill, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("C#", "Beginner", null)]
+        public void D_CannotBeAbleToAddExistingSkillAndLevelAsNewSkill(string newSkill, string newLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("skill", skill);
-            argumentsOfScenario.Add("level", level);
+            argumentsOfScenario.Add("newSkill", newSkill);
+            argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("D. Cannot be able to add existing skill and level as new skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 38
+#line 31
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -216,19 +200,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 32
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 40
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+ testRunner.Then(string.Format("I create a new skill records with values  \'{0}\' \'{1}\'", newSkill, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 41
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 42
- testRunner.And(string.Format("I create a new skill record with values \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 43
+#line 34
  testRunner.Then("I should see popup message as \'This skill is already exist in your skill list.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -236,14 +214,54 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E. Edit an existing skill to a new skill without editing skill level")]
-        [NUnit.Framework.TestCaseAttribute("QA", null)]
-        public void E_EditAnExistingSkillToANewSkillWithoutEditingSkillLevel(string skill, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("E. Edit an existing skill to a new skill record without editing skill level")]
+        [NUnit.Framework.TestCaseAttribute("Java", "QA", "Expert", null)]
+        public void E_EditAnExistingSkillToANewSkillRecordWithoutEditingSkillLevel(string skill, string newSkill, string level, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("skill", skill);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E. Edit an existing skill to a new skill without editing skill level", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("newSkill", newSkill);
+            argumentsOfScenario.Add("level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E. Edit an existing skill to a new skill record without editing skill level", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 40
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 41
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 42
+ testRunner.Then(string.Format("I Edit an existing skill \'{0}\'to a new skill record with value \'{1}\' without edit" +
+                            "ng skill level", skill, newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 43
+ testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your skills\'", newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 44
+ testRunner.And(string.Format("I should be able to see updated skill in table  \'{0}\' \'{1}\'", newSkill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("F. Edit an existing skill level record without editing skill")]
+        [NUnit.Framework.TestCaseAttribute("QA", "Expert", "Intermediate", null)]
+        public void F_EditAnExistingSkillLevelRecordWithoutEditingSkill(string skill, string level, string newLevel, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("skill", skill);
+            argumentsOfScenario.Add("level", level);
+            argumentsOfScenario.Add("newLevel", newLevel);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("F. Edit an existing skill level record without editing skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 49
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -255,64 +273,17 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 50
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 51
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I Edit an existing skill \'{0}\' to a new skill record by editing skill level recor" +
+                            "d \'{1}\' to \'{2}\' without editng skill", skill, level, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 52
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 53
- testRunner.And(string.Format("I Edit an existing skill to a new skill record with value \'{0}\' without editng sk" +
-                            "ill level", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 54
  testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your skills\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 55
- testRunner.And(string.Format("I should be able to see updated skill in table \'{0}\' \'<level>\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("F. Edit an existing skill level record without editing skill")]
-        [NUnit.Framework.TestCaseAttribute("Basic", null)]
-        public void F_EditAnExistingSkillLevelRecordWithoutEditingSkill(string level, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("level", level);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("F. Edit an existing skill level record without editing skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 60
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 61
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 62
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 63
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 64
- testRunner.And(string.Format("I Edit an existing skill with skill level value \'{0}\' without editng skill", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 65
- testRunner.Then("I should see popup message as \'<skill> has been updated to your skills\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 66
- testRunner.And(string.Format("I should be able to see updated skill in table \'<skill>\' \'{0}\'", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+ testRunner.And(string.Format("I should be able to see updated skill in table  \'{0}\' \'{1}\'", skill, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -320,15 +291,17 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("G. Edit an existing skill and level to another existing skill record")]
-        [NUnit.Framework.TestCaseAttribute("Arabic", "Fluent", null)]
-        public void G_EditAnExistingSkillAndLevelToAnotherExistingSkillRecord(string language, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("QA", "C#", "Intermediate", "Beginner", null)]
+        public void G_EditAnExistingSkillAndLevelToAnotherExistingSkillRecord(string skill, string newSkill, string level, string newLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("language", language);
+            argumentsOfScenario.Add("skill", skill);
+            argumentsOfScenario.Add("newSkill", newSkill);
             argumentsOfScenario.Add("level", level);
+            argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("G. Edit an existing skill and level to another existing skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 71
+#line 58
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -338,24 +311,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 72
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 59
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 73
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 60
+ testRunner.Then(string.Format("I Edit an existing skill \'{0}\' \'{1}\' to another existing skill record with values" +
+                            " \'{2}\' \'{3}\'", skill, level, newSkill, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 74
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 75
- testRunner.And(string.Format("I Edit an existing skill to another existing skill record with values \'<skill>\' \'" +
-                            "{0}\'", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 76
+#line 61
  testRunner.Then("I should see popup message as \'This skill is already added to your skill list.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 77
- testRunner.And(string.Format("I should be able to see updated skill in table  \'<skill>\' \'{0}\'", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -363,12 +327,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("H. Delete an existing skill")]
-        public void H_DeleteAnExistingSkill()
+        [NUnit.Framework.TestCaseAttribute("QA", null)]
+        [NUnit.Framework.TestCaseAttribute("C#", null)]
+        public void H_DeleteAnExistingSkill(string skill, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("skill", skill);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("H. Delete an existing skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 82
+#line 66
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -378,17 +345,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 83
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 67
+ testRunner.Given("I select skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 84
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 68
+ testRunner.Then(string.Format("I successfully delete existing skill \'{0}\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 85
- testRunner.Then("I click on the skill tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 69
+ testRunner.Then(string.Format("I should see popup message as \'{0} has been deleted\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 86
- testRunner.And("I delete existing skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And(string.Format("I should not be able to see deleted skill in table \'{0}\'", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

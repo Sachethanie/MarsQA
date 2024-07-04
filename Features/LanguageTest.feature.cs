@@ -84,7 +84,7 @@ namespace MarsQA.Features
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A. Create a new lungauge record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,19 +94,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 4
+ testRunner.Given(string.Format("I create a new langauge records with values  \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 5
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 7
- testRunner.And(string.Format("I create a new langauge records with values  \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 8
  testRunner.Then(string.Format("I should see popup message as \'{0} has been added to your languages\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 6
  testRunner.And(string.Format("I should be able to see added language in table  \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -125,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("B. Edit an existing language to a new langauge record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
+#line 12
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -135,19 +129,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.Given(string.Format("I Edit an existing language \'{0}\' \'{1}\'  to a new record with values \'{2}\' \'{3}\'", language, level, newLanguage, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 18
- testRunner.And(string.Format("I Edit an existing language \'{0}\' \'{1}\'  to a new record with values \'{2}\' \'{3}\'", language, level, newLanguage, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
+#line 14
  testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your languages\'", newLanguage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
+#line 15
  testRunner.And(string.Format("I should be able to see updated language in table  \'{0}\' \'{1}\'", newLanguage, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -163,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("language", language);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("C. Cannot be able to add new language without adding language level", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+#line 20
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -173,16 +161,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 26
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.Given(string.Format("I create a new langauge records with value  \'{0}\' without adding language level", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 27
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 28
- testRunner.And(string.Format("I create a new langauge records with value  \'{0}\' without adding language level", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 29
+#line 22
  testRunner.Then("I should see popup message as \'Please enter language and level\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -199,7 +181,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("D. Cannot be able to add existing language and level as new language", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
+#line 28
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -209,18 +191,12 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 36
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 29
+ testRunner.Given(string.Format("I create a new langauge records with values  \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 37
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 38
- testRunner.And(string.Format("I create a new langauge records with values  \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 39
+#line 30
  testRunner.Then("I should see popup message as \'This language is already exist in your language li" +
-                        "st\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "st.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -239,7 +215,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E. Edit an existing language to a new langauge record without editing language le" +
                     "vel", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 45
+#line 36
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -249,20 +225,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 46
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
+ testRunner.Given(string.Format("I Edit an existing language \'{0}\'to a new langauge record with value \'{1}\' withou" +
+                            "t editng language level", language, newLanguage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 47
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 48
- testRunner.And(string.Format("I Edit an existing language \'{0}\'to a new langauge record with value \'{1}\' withou" +
-                            "t editng language level", language, newLanguage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 49
+#line 38
  testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your languages\'", newLanguage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 50
+#line 39
  testRunner.And(string.Format("I should be able to see updated language in table  \'{0}\' \'{1}\'", newLanguage, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -280,7 +250,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("F. Edit an existing language level record without editing language", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 55
+#line 44
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -290,20 +260,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 56
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 45
+ testRunner.Given(string.Format("I Edit an existing language \'{0}\' to a new langauge record by editing language le" +
+                            "vel record form \'{1}\' to \'{2}\' without editng language", language, level, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 57
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 58
- testRunner.And(string.Format("I Edit an existing language \'{0}\' to a new langauge record by editing language le" +
-                            "vel record form \'{1}\' to \'{2}\' without editng language", language, level, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 59
+#line 46
  testRunner.Then(string.Format("I should see popup message as \'{0} has been updated to your languages\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 60
+#line 47
  testRunner.And(string.Format("I should be able to see updated language in table  \'{0}\' \'{1}\'", language, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -322,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("newLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("G. Edit an existing language and level to another existing language record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 65
+#line 52
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -332,19 +296,73 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 66
- testRunner.Given("I login to Mars", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 53
+ testRunner.Given(string.Format("I Edit an existing language \'{0}\' \'{1}\' to another existing langauge record with " +
+                            "values  \'{2}\' \'{3}\'", language, level, newLanguage, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 67
- testRunner.Then("I navigate to profile page and language tab shoud be selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 68
- testRunner.And(string.Format("I Edit an existing language \'{0}\' \'{1}\' to another existing langauge record with " +
-                            "values  \'{2}\' \'{3}\'", language, level, newLanguage, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 69
+#line 54
  testRunner.Then("I should see popup message as \'This language is already added to your language li" +
                         "st.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("H. Delete an existing language")]
+        [NUnit.Framework.TestCaseAttribute("Arabic", null)]
+        [NUnit.Framework.TestCaseAttribute("Spanish", null)]
+        public void H_DeleteAnExistingLanguage(string language, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("language", language);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("H. Delete an existing language", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 59
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 60
+ testRunner.Given(string.Format("I successfully delete existing language \'{0}\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 61
+ testRunner.Then(string.Format("I should see popup message as \'{0} has been deleted from your languages\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 62
+ testRunner.And(string.Format("I should not be able to see updated language in table  \'{0}\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I. Add maximum number of languages")]
+        public void I_AddMaximumNumberOfLanguages()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I. Add maximum number of languages", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 68
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 69
+    testRunner.Given("I add languages until I cannot add \'<language>\' \'<level>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 70
+    testRunner.Then("I should see the maximum number of languages added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
