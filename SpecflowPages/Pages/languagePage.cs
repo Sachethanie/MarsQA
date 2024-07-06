@@ -1,10 +1,8 @@
 ﻿using MarsQA.Helpers;
 using MarsQA.Utils;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace MarsQA.Pages
 {
@@ -124,62 +122,52 @@ namespace MarsQA.Pages
 
         {
             var deletePencilIcon = GetDeletePencilIcon(driver, language);
-            deletePencilIcon.Click();
-            
+            deletePencilIcon.Click();            
         }
 
 
-        public void WhenIAddLanguagesUntilICannotAddMore(IWebDriver driver,string language, string languageLevel)
-        {
-           // language = 0;  
+        public void WhenIAddLanguagesUntilICannotAddMore(IWebDriver driver)
+
+        {                                 
             bool canAddMore = true;
             int maxLanguagesToTry = 4; // Arbitrary large number to test the limit
 
             for (int i = 0; i < maxLanguagesToTry && canAddMore; i++)
             {
                 try
-                {
-                    AddNewButton.Click();
+                {                  
+                    if (AddNewButton == null)
+                    {
+                        break;
+                    }
 
-                    // Locate and fill the language field
-                    // var languageField = driver.FindElement(By.XPath("//input[@name='language']"));
-                    AddLanguage.Clear();
-                    AddLanguage.SendKeys($"Language{i}");
+                    var language = $"laguage{i}";
+                    SuccessfullyAddNewLanguage(driver, language, "Basic");
 
-                    // Locate and fill the level field
-                    AddLanguageLevel.SendKeys(languageLevel);
-                    AddLanguageLevel.SendKeys(Keys.Enter);
-
-                    // Locate and click the add button
-                    
-                    AddButton.Click();
-
-                    // Wait for the language to be added (this might require a more sophisticated wait)
                     System.Threading.Thread.Sleep(500);
 
                     // Check if the language was added (e.g., by checking if it appears in a list)
-                    //var addedLanguageElement = driver.FindElement(By.XPath($"//td[text()='Language{i}']"));
-                    if (language == null)
+                    var addedLanguageElement = driver.FindElement(By.XPath($"//tr[td[text()='laguage{i}']]"));
+                    if (addedLanguageElement == null)
                     {
                         canAddMore = false;
-                    }
-                    else
-                    {
-                       i++;
-                    }
+                    }                    
                 }
                 catch (NoSuchElementException)
                 {
                     canAddMore = false;
-                }
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine($"An error occurred: {ex.Message}");
-                //    canAddMore = false;
-                //}
-            }
+                }                
+            }            
         }
 
+        public void SeeTheMaximumNumberOfLanguagesAdded(IWebDriver driver)
 
+        {
+            int maxLanguagesToTry = 4;
+
+            int iRowsCount = driver.FindElements(By.XPath("//table[@class='ui fixed table']/tbody/tr")).Count;          
+                       
+            Assert.That(iRowsCount, Is.EqualTo(maxLanguagesToTry), $"Expected to add a maximum of {maxLanguagesToTry} languages, but added {iRowsCount}.");
+        }
     }
 }

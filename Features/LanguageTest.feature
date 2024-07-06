@@ -65,9 +65,7 @@ Scenario: A. Create a new lungauge record
 	| Arabic   |
 	| Spanish  |
 
-	 Scenario: I. Add maximum number of languages    
-    Given I add languages until I cannot add '<language>' '<level>'
+    Scenario: I. Add maximum number of languages  	
+    Given I add languages until I cannot add 
     Then I should see the maximum number of languages added
-	Examples: 
-	| language | level           |
-	|  Spanish | Conversational  |
+	

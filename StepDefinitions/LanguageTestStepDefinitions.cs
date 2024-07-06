@@ -1,20 +1,13 @@
-using AventStack.ExtentReports;
 using MarsQA.Helpers;
 using MarsQA.Pages;
-using MarsQA.SpecflowPages.Helpers;
-using MarsQA.Utils;
-using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using RazorEngine;
-using System.Reflection.Emit;
 
 namespace MarsSpecFlow.StepDefinitions
 {
     [Binding]
     public class LanguageTestStepDefinitions : Driver
 
-    {        
-        LanguagePage languagePage = new LanguagePage();        
+    {
+        LanguagePage languagePage = new LanguagePage();
 
         [Given(@"I login to Mars")]
         public void GivenILogIntoMars()
@@ -28,7 +21,7 @@ namespace MarsSpecFlow.StepDefinitions
         public void ThenICreateANewLangaugeRecordsWithValues(string language, string level)
 
         {
-            languagePage.SuccessfullyAddNewLanguage(driver, language, level);           
+            languagePage.SuccessfullyAddNewLanguage(driver, language, level);
         }
 
         [Then(@"I should see popup message as '([^']*)'")]
@@ -101,22 +94,20 @@ namespace MarsSpecFlow.StepDefinitions
             languagePage.CannotViewLanguageInTable(driver, language);
         }
 
+        [Given(@"I add languages until I cannot add")]
+        public void GivenIAddLanguagesUntilICannotAdd()
 
-
-
-
-        [Given(@"I add languages until I cannot add '([^']*)' '([^']*)'")]
-        public void GivenIAddLanguagesUntilICannotAdd(string language, string level)
         {
-            languagePage.WhenIAddLanguagesUntilICannotAddMore(driver,language,level);
+            languagePage.WhenIAddLanguagesUntilICannotAddMore(driver);
         }
 
         [Then(@"I should see the maximum number of languages added")]
         public void ThenIShouldSeeTheMaximumNumberOfLanguagesAdded()
+
         {
-            throw new PendingStepException();
+            languagePage.SeeTheMaximumNumberOfLanguagesAdded(driver);
         }
 
-
+       
     }
 }

@@ -359,7 +359,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 69
-    testRunner.Given("I add languages until I cannot add \'<language>\' \'<level>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I add languages until I cannot add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 70
     testRunner.Then("I should see the maximum number of languages added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
