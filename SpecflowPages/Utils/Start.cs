@@ -26,6 +26,7 @@ namespace MarsQA.Utils
             Initialize();            
             //call the SignIn class
             SignIn.SigninStep();
+            SignIn.SuccessfullyNavigateToProfilePageWithSelectedLanguageTab(driver);
         }
 
         [AfterScenario]

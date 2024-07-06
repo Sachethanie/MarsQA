@@ -14,7 +14,6 @@ using RazorEngine;
 namespace MarsQA.Pages
 {
     public class SkillPage
-
     {
         private static IWebElement AddNewButton => Driver.driver.FindElement(By.XPath("//div[@class='ui teal button'][text()='Add New']"));
         private static IWebElement AddSkill => Driver.driver.FindElement(By.XPath("//input[@type='text' and @placeholder='Add Skill']"));
@@ -23,7 +22,6 @@ namespace MarsQA.Pages
         private static IWebElement UpdateButton => Driver.driver.FindElement(By.XPath("//input[@type='button' and @class='ui teal button']"));
        
         public void NavigateToSkillForm(IWebDriver driver)
-
         {
             IWebElement skillTab = driver.FindElement(By.XPath("//a[@class='item' and text()='Skills']"));
             skillTab.Click();
@@ -35,27 +33,23 @@ namespace MarsQA.Pages
         }
 
         public static IWebElement GetDeletePencilIcon(IWebDriver driver, string skill)
-
         {
             return driver.FindElement(By.XPath($"//tr[td[text()='{skill}']]//i[contains(@class, 'remove icon')]"));
         }       
 
         public void ViewSkillInTable(IWebDriver driver, string skill, string level)
-
         {
             var skillRow = driver.FindElements(By.XPath($"//tr[td[text()='{skill}'] and td[text()='{level}']]"));
             Assert.That(skillRow, Is.Not.Null, "skill {skill}, level {level} was not found in the list");
         }
 
         public void CannotViewSkillInTable(IWebDriver driver, string skill)
-
         {
             var skillRow = driver.FindElements(By.XPath($"//tr[td[text()='{skill}']]"));
             Assert.That(skillRow, Is.Empty, $"skill {skill} was found in the list, but it should have been deleted.");
         }
 
         public void AssertionPopupMessage(IWebDriver driver, string expectedMessage)
-
         {
             WaitHelper.WaitToBeVisible(driver, LocatorType.ClassName, "ns-box", 30);
             IWebElement toastMessageElement = driver.FindElement(By.ClassName("ns-box"));
@@ -64,7 +58,6 @@ namespace MarsQA.Pages
         }
 
         public void SuccessfullyAddNewSkill(IWebDriver driver,string skillToBeAdd, string skillLevelToBeAdd)
-
         {
             AddNewButton.Click();
             AddSkill.SendKeys(skillToBeAdd);
@@ -75,7 +68,6 @@ namespace MarsQA.Pages
         }  
 
         public void CannotBeAbleToAddnewSkillWithoutAddingSkillLevel(IWebDriver driver, string skillToBeAdd)
-
         {           
             AddNewButton.Click();        
             AddSkill.SendKeys(skillToBeAdd); 
@@ -83,7 +75,6 @@ namespace MarsQA.Pages
         }      
 
         public void SuccessfullyEditExistingSkillAndSkillLevel(IWebDriver driver,string skill,string level, string skillToBeEdit, string skillLevelToBeEdit)
-
         {
             var editPencilIcon = GetEditPencilIcon(driver, skill);
             editPencilIcon.Click();
@@ -97,7 +88,6 @@ namespace MarsQA.Pages
         }
 
         public void SuccsfullyEditOnlyExistingSkillToANewSkillWithoutEditSkillLevel(IWebDriver driver,string skill, string skillToBeEdit)
-
         {
             var editPencilIcon = GetEditPencilIcon(driver, skill);
             editPencilIcon.Click();
@@ -106,8 +96,7 @@ namespace MarsQA.Pages
             UpdateButton.Click();
         }
 
-        public void SuccsfullyEditSkillLevelWithoutEditSkill(IWebDriver driver,string skill, string skillLevel, string skillLevelToBeEdit)       
-
+        public void SuccsfullyEditSkillLevelWithoutEditSkill(IWebDriver driver,string skill, string skillLevel, string skillLevelToBeEdit)   
         {
             var editPencilIcon = GetEditPencilIcon(driver, skill);
             editPencilIcon.Click();
