@@ -3,120 +3,145 @@ using MarsQA.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using RazorEngine;
 
 namespace MarsQA.Pages
 {
-    public class LanguagePage
+    public class LanguagePage : Driver
     {
-        private static IWebElement AddNewButton => Driver.driver.FindElement(By.XPath("//div[@class='ui teal button '][text()='Add New']"));
-        private static IWebElement AddLanguage => Driver.driver.FindElement(By.XPath("//input[@type='text' and @placeholder='Add Language']"));
-        private static IWebElement AddLanguageLevel => Driver.driver.FindElement(By.XPath("//select [@class='ui dropdown' and @name='level']"));
-        private static IWebElement AddButton => Driver.driver.FindElement(By.XPath("//input[@type='button' and @class='ui teal button']"));
-        private static IWebElement UpdateButton => Driver.driver.FindElement(By.XPath("//input[@type='button' and @class='ui teal button']"));
+        private static IWebElement AddNewButton => driver.FindElement(By.XPath("//div[@class='ui teal button '][text()='Add New']"));
+        private static IWebElement AddLanguage => driver.FindElement(By.XPath("//input[@type='text' and @placeholder='Add Language']"));
+        private static IWebElement AddLanguageLevel => driver.FindElement(By.XPath("//select [@class='ui dropdown' and @name='level']"));
+        private static IWebElement AddButton => driver.FindElement(By.XPath("//input[@type='button' and @class='ui teal button']"));
+        private static IWebElement UpdateButton => driver.FindElement(By.XPath("//input[@type='button' and @class='ui teal button']"));
+        private static IWebElement CancelButton => driver.FindElement(By.XPath("//input[@class='ui button' and @value='Cancel']"));
 
         private const int MaxNumberofLanguagesToBeAdded = 4;
 
-        public static IWebElement GetEditPencilIcon(IWebDriver driver, string language)
+       
+        public static void CleaupAllLanguageDataBeforeStartTest()
+        {
+            
+            var deleteButtons = driver.FindElements(By.XPath($"//div[@data-tab='first']//i[contains(@class, 'remove icon')]"));
+            foreach (var deleteButton in deleteButtons)
+            {
+                deleteButton.Click();
+            }
+        }
+        public static IWebElement GetEditPencilIcon( string language)
         {
             return driver.FindElement(By.XPath($"//tr[td[text()='{language}']]//i[contains(@class, 'outline write icon')]"));
         }
 
-        public static IWebElement GetDeletePencilIcon(IWebDriver driver, string language)
+        public static IWebElement GetDeletePencilIcon( string language)
         {
             return driver.FindElement(By.XPath($"//tr[td[text()='{language}']]//i[contains(@class, 'remove icon')]"));
         }
 
-        public void SuccessfullyAddNewLanguage(IWebDriver driver, string languageToBeAdd, string languageLevelToBeAdd)
+        public void SuccessfullyClickCancelButton() 
         {
-            AddNewButton.Click();
-            AddLanguage.SendKeys(languageToBeAdd);
-            SelectElement dropdown = new SelectElement(AddLanguageLevel);
-            dropdown.SelectByText(languageLevelToBeAdd);
-            Assert.That(dropdown.SelectedOption.Text, Is.EqualTo(languageLevelToBeAdd));
-            AddButton.Click();
+
+            CancelButton.Click();
         }
 
-        public void ViewLanguageInTable(IWebDriver driver, string language, string level)
+        public void SuccessfullyAddNewLanguage(string newLanguage, string newLevel)
+        {            
+            AddNewButton.Click();
+            AddLanguage.SendKeys(newLanguage);
+            SelectElement dropdown = new SelectElement(AddLanguageLevel);
+            dropdown.SelectByText(newLevel);          
+            AddButton.Click();
+            
+        }
+
+        public void ViewLanguageInTable(string newLanguage, string newLevel)
         {
-            var languageRow = driver.FindElements(By.XPath($"//tr[td[text()='{language}'] and td[text()='{level}']]"));
+            var languageRow = driver.FindElements(By.XPath($"//tr[td[text()='{newLanguage}'] and td[text()='{newLevel}']]"));
             Assert.That(languageRow, Is.Not.Null, "$Language {language}, level {level} was not found in the list");
         }
 
-        public void CannotViewLanguageInTable(IWebDriver driver, string language)
+        public void CannotViewLanguageInTable(string language)
         {
             var languageRows = driver.FindElements(By.XPath($"//tr[td[text()='{language}']]"));
-            Assert.That(languageRows, Is.Empty, $"Language {language} was found in the list, but it should have been deleted.");
+            Assert.That(languageRows, Is.Empty, $"Language {language} was found in the list, but it should  not have been in the list.");
         }
 
-        public void AssertionPopupMessage(IWebDriver driver, string expectedMessage)
+        public void AssertionPopupMessage(string expectedMessage)
         {
-            WaitHelper.WaitToBeVisible(driver, LocatorType.ClassName, "ns-box", 30);
-            IWebElement toastMessageElement = driver.FindElement(By.ClassName("ns-box"));
-            string actualMessage = toastMessageElement.Text;
+            Thread.Sleep(1000);           
+            var toastMessageElement = driver.FindElements(By.ClassName("ns-box"));
+            string actualMessage = toastMessageElement.First().Text;            
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
 
-        public void CannotBeAbleToAddnewLanguageWithoutAddingLanguageLevel(IWebDriver driver, string languageToBeAdd)
+        public void CannotBeAbleToAddnewLanguageWithoutAddingLanguageLevel(string newLanguage)
         {
             AddNewButton.Click();
-            AddLanguage.SendKeys(languageToBeAdd);
+            AddLanguage.SendKeys(newLanguage);
             AddButton.Click();
         }
 
-        public void SuccessfullyEditExistingLanguageAndLanguageLevel(IWebDriver driver, string language, string level, string languageToBeEdit, string languageLevelToBeEdit)
+        public void SuccessfullyEditExistingLanguageAndLanguageLevel(string language, string level, string newLanguage, string newLevel)
         {
-            var editPencilIcon = GetEditPencilIcon(driver, language);
+           
+            var editPencilIcon = GetEditPencilIcon(language);
             editPencilIcon.Click();
             AddLanguage.Clear();
-            AddLanguage.SendKeys(languageToBeEdit);
-            SelectElement dropdown = new SelectElement(AddLanguageLevel);
+            AddLanguage.SendKeys(newLanguage);           
             AddLanguageLevel.Click();
-            AddLanguageLevel.SendKeys(languageLevelToBeEdit);
+            AddLanguageLevel.SendKeys(newLevel);
             AddLanguageLevel.SendKeys(Keys.Enter);
             UpdateButton.Click();
         }
 
-        public void SuccsfullyEditOnlyExistingLanguageToANewLanguageWithoutEditLanguageLevel(IWebDriver driver, string language, string languageToBeEdit)
+        public void SuccsfullyEditOnlyExistingLanguageToANewLanguageWithoutEditLanguageLevel(string language, string newLanguage)
         {
-            var editPencilIcon = GetEditPencilIcon(driver, language);
+           
+            var editPencilIcon = GetEditPencilIcon(language);
             editPencilIcon.Click();
             AddLanguage.Clear();
-            AddLanguage.SendKeys(languageToBeEdit);
+            AddLanguage.SendKeys(newLanguage);
             UpdateButton.Click();
         }
 
-        public void SuccsfullyEditLanguageLevelWithoutEditLanguage(IWebDriver driver, string language, string level, string languageLevelToBeEdit)
+        public void SuccsfullyEditLanguageLevelWithoutEditLanguage(string language, string level, string newLevel)
         {
-            var editPencilIcon = GetEditPencilIcon(driver, language);
-            editPencilIcon.Click();
-            SelectElement dropdown = new SelectElement(AddLanguageLevel);
+           
+            var editPencilIcon = GetEditPencilIcon(language);
+            editPencilIcon.Click();            
             AddLanguageLevel.Click();
-            AddLanguageLevel.SendKeys(languageLevelToBeEdit);
+            AddLanguageLevel.SendKeys(newLevel);
             AddLanguageLevel.SendKeys(Keys.Enter);
             UpdateButton.Click();
         }
 
-        public void CannotBeAbleToEditExistngLanguageAndLanguageLevelToAnotherExistingLanguage(IWebDriver driver, string language, string languageLevel, string languageToBeEdit, string languageLevelToBeEdit)
+        public void CannotBeAbleToEditExistngLanguageAndLanguageLevelToAnotherExistingLanguage(string language, string languageLevel, string newLanguage,string newLevel)
         {
-            var editPencilIcon = GetEditPencilIcon(driver, language);
+            
+            var editPencilIcon = GetEditPencilIcon( language);
             editPencilIcon.Click();
             AddLanguage.Clear();
-            AddLanguage.SendKeys(languageToBeEdit);
-            SelectElement dropdown = new SelectElement(AddLanguageLevel);
+            AddLanguage.SendKeys(newLanguage);           
             AddLanguageLevel.Click();
-            AddLanguageLevel.SendKeys(languageLevelToBeEdit);
+            AddLanguageLevel.SendKeys(newLevel);
             AddLanguageLevel.SendKeys(Keys.Enter);
             UpdateButton.Click();
         }
 
-        public void SuccessfullydeleteExistingLanguage(IWebDriver driver, string language)
-        {
-            var deletePencilIcon = GetDeletePencilIcon(driver, language);
+        public void SuccessfullydeleteExistingLanguage(string language)
+        {           
+            var deletePencilIcon = GetDeletePencilIcon(language);
             deletePencilIcon.Click();
         }
 
+        public static void CleanUpExistingLanguage(string language)
+        {
+            var deletePencilIcon = GetDeletePencilIcon(language);
 
-        public void WhenIAddLanguagesUntilICannotAddMore(IWebDriver driver)
+            deletePencilIcon?.Click();            
+        }
+
+        public void WhenIAddLanguagesUntilICannotAddMore()
         {
             bool canAddMore = true;
             int maxLanguagesToTry = MaxNumberofLanguagesToBeAdded;
@@ -132,7 +157,7 @@ namespace MarsQA.Pages
                     }
 
                     var language = $"laguage{i}";
-                    SuccessfullyAddNewLanguage(driver, language, "Basic");
+                    SuccessfullyAddNewLanguage(language, "Basic");
 
                     System.Threading.Thread.Sleep(500);
 
@@ -150,9 +175,9 @@ namespace MarsQA.Pages
             }
         }
 
-        public void SeeTheMaximumNumberOfLanguagesAdded(IWebDriver driver)
+        public void SeeTheMaximumNumberOfLanguagesAdded()
         {
-            int iRowsCount = driver.FindElements(By.XPath("//table[@class='ui fixed table']/tbody/tr")).Count;
+            int iRowsCount = driver.FindElements(By.XPath("//div[@data-tab='first']//table[@class='ui fixed table']/tbody/tr")).Count;
             Assert.That(iRowsCount, Is.EqualTo(MaxNumberofLanguagesToBeAdded), $"Expected to add a maximum of {MaxNumberofLanguagesToBeAdded} languages, but added {iRowsCount}.");
         }
     }

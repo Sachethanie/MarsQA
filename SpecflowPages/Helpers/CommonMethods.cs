@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MarsQA.Helpers
 {
-    public class CommonMethods
+    public class CommonMethods : Driver
     {
         //Screenshots
         //Screenshot
@@ -13,7 +13,7 @@ namespace MarsQA.Helpers
         public class SaveScreenShotClass
         {
             
-            public static string SaveScreenshot(IWebDriver driver, string ScreenShotFileName) // Definition
+            public static string SaveScreenshot(string ScreenShotFileName) // Definition
             {
                 var folderLocation = (ConstantHelpers.ScreenshotPath);
 
