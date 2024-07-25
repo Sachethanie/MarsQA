@@ -59,9 +59,14 @@ namespace MarsQA.Utils
                 var language = scenarioContext["Language"] as string;
                 LanguagePage.CleanUpExistingLanguage(language);
                 // Perform any additional cleanup or logging using the retrieved value
-            }
-           
+            }          
 
+        }
+
+        [AfterScenario("CleanUp-Language-All", Order = 0)]
+        public void CleanDataAfterRunScenarioMaxLanguageAdded(ScenarioContext scenarioContext) 
+        {
+            LanguagePage.CleaupAllLanguageDataBeforeStartTest();
         }
 
         [AfterScenario("CleanUp-Skill", Order = 0)]

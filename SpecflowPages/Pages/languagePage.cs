@@ -21,11 +21,12 @@ namespace MarsQA.Pages
        
         public static void CleaupAllLanguageDataBeforeStartTest()
         {
-            
-            var deleteButtons = driver.FindElements(By.XPath($"//div[@data-tab='first']//i[contains(@class, 'remove icon')]"));
-            foreach (var deleteButton in deleteButtons)
+            int iRowsCount = driver.FindElements(By.XPath("//div[@data-tab='first']//table[@class='ui fixed table']/tbody/tr")).Count;
+            for(int i=0; i<iRowsCount; i++)
             {
-                deleteButton.Click();
+                var deleteButtonNew = driver.FindElement(By.XPath($"//div[@data-tab='first']//i[contains(@class, 'remove icon')]"));
+                deleteButtonNew.Click();
+                Thread.Sleep(2000);
             }
         }
         public static IWebElement GetEditPencilIcon( string language)

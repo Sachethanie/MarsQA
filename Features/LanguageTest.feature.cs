@@ -441,11 +441,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("J. Add maximum number of languages")]
-        [NUnit.Framework.CategoryAttribute("CleanUp-Language")]
+        [NUnit.Framework.CategoryAttribute("CleanUp-Language-All")]
         public void J_AddMaximumNumberOfLanguages()
         {
             string[] tagsOfScenario = new string[] {
-                    "CleanUp-Language"};
+                    "CleanUp-Language-All"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("J. Add maximum number of languages", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 91

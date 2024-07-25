@@ -87,7 +87,7 @@ Scenario: A. Create a new lungauge record
 	| language | level |
 	| Arabic   | Basic |
 	
-	@CleanUp-Language
+	@CleanUp-Language-All
     Scenario: J. Add maximum number of languages  	
     Given I add languages until I cannot add 
     Then I should see the maximum number of languages added
