@@ -13,7 +13,7 @@ namespace MarsQA.Helpers
         //Initialize the browser
         public static IWebDriver driver { get; set; }
 
-        public void Initialize()
+        public static void Initialize()
         {
             //Defining the browser
             driver = new ChromeDriver();
@@ -33,7 +33,6 @@ namespace MarsQA.Helpers
         public static void TurnOnWait()
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
         }
 
         public static void NavigateUrl()
@@ -42,7 +41,7 @@ namespace MarsQA.Helpers
         }
 
         //Close the browser
-        public void Close()
+        public static void Close()
         {
             driver.Quit();
         }

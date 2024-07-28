@@ -19,5 +19,8 @@ namespace MarsQA.Helpers
 
         //ReportXML Path
         public static string ReportXMLPath = "TestReports";
+
+        //Reporthtml Path
+        public static string ReportHTMLPath = "C:\\Src\\MVPStudio\\Mars\\MarsQA\\TestReports\\report.html";
     }
 }
